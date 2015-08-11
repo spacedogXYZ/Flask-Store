@@ -103,6 +103,9 @@ class S3Provider(Provider):
         # doubles up as the STORE_URL_PREFIX
         app.config.setdefault('STORE_URL_PREFIX', app.config['STORE_PATH'])
 
+        app.config.setdefault('STORE_S3_REDUCED_REDUNDANCY', False)
+        app.config.setdefault('STORE_S3_HEADERS', {})
+
         if not BOTO_INSTALLED:
             raise ImportError(
                 'boto must be installed to use the S3Provider or the '
