@@ -21,9 +21,9 @@ Example
     app = Flask(__app__)
     app.config['STORE_PROVIDER'] = 'flask_store.providers.s3.S3Provider'
     app.config['STORE_S3_ACCESS_KEY'] = 'foo'
-    app.confog['STORE_S3_SECRET_KEY'] = 'bar'
-    app.confog['STORE_S3_REDUCED_REDUNDANCY'] = False
-    app.confog['STORE_S3_HEADERS'] = {
+    app.config['STORE_S3_SECRET_KEY'] = 'bar'
+    app.config['STORE_S3_REDUCED_REDUNDANCY'] = False
+    app.config['STORE_S3_HEADERS'] = {
                                         'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
                                         'Cache-Control': 'max-age=86400',
                                     }
