@@ -80,9 +80,8 @@ if SETUP_DIRNAME != '':
 # Requirements
 
 INSTALL_REQUIREMENTS = read_requirements('REQS.txt')
-TESTING_REQUIREMENTS = read_requirements('REQS.TESTING.txt')
-DEVELOP_REQUIREMENTS = read_requirements('REQS.DEVELOP.txt') \
-    + TESTING_REQUIREMENTS
+# TESTING_REQUIREMENTS = read_requirements('REQS.TESTING.txt')
+DEVELOP_REQUIREMENTS = read_requirements('REQS.DEVELOP.txt')
 
 # Include the Change Log on PyPi
 
@@ -115,7 +114,7 @@ setup(
         'develop': DEVELOP_REQUIREMENTS
     },
     # Testing
-    tests_require=TESTING_REQUIREMENTS,
+    # tests_require=TESTING_REQUIREMENTS,
     cmdclass={
         'test': PyTest
     },
