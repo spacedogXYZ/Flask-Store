@@ -82,7 +82,7 @@ class S3Provider(Provider):
     _bucket = None
 
     def __init__(self, *args, **kwargs):
-        super (S3Provider, self).__init__(*args, **kwargs)
+        super(S3Provider, self).__init__(*args, **kwargs)
         self._bucket = current_app.config.get('STORE_S3_BUCKET')
 
     @staticmethod
