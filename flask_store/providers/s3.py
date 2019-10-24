@@ -53,10 +53,14 @@ try:
 except ImportError:
     GEVENT_INSTALLED = False
 
+# Standard Libs
 import io
 import mimetypes
 import os
 from StringIO import StringIO
+=======
+
+# Third Party Libs
 from flask import copy_current_request_context, current_app
 from flask_store.exceptions import NotConfiguredError
 from flask_store.providers import Provider
@@ -82,7 +86,7 @@ class S3Provider(Provider):
     _bucket = None
 
     def __init__(self, *args, **kwargs):
-        super (S3Provider, self).__init__(*args, **kwargs)
+        super(S3Provider, self).__init__(*args, **kwargs)
         self._bucket = current_app.config.get('STORE_S3_BUCKET')
 
     @staticmethod
@@ -105,6 +109,11 @@ class S3Provider(Provider):
 
         app.config.setdefault('STORE_S3_REDUCED_REDUNDANCY', False)
         app.config.setdefault('STORE_S3_HEADERS', {})
+
+        # Default ACL
+        # http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl
+        app.config.setdefault('STORE_S3_ACL', 'private')
+
 
         if not BOTO_INSTALLED:
             raise ImportError(
@@ -201,6 +210,7 @@ class S3Provider(Provider):
 
         key = bucket.new_key(path)
         key.set_metadata('Content-Type', mimetype)
+
         for header, value in current_app.config['STORE_S3_HEADERS'].iteritems():
             key.set_metadata(header, value)
         if isinstance(fp,StringIO):
