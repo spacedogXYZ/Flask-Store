@@ -37,8 +37,11 @@ Example
 
 import errno
 import os
-from StringIO import StringIO
-
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+    
 from flask_store.providers import Provider
 
 
