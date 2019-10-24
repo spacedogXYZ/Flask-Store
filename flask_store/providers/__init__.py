@@ -9,9 +9,9 @@ Base store functionality and classes.
 
 # Python 2/3 imports
 try:
-    from urllib.parse import urlparse
+    from urllib.parse import urlparse, urljoin
 except ImportError:
-    from urlparse import urlparse
+    from urlparse import urlparse, urljoin
 
 import os
 import shortuuid
@@ -135,7 +135,7 @@ class Provider(object):
         if not current_app.config['STORE_DOMAIN']:
             path = self.relative_url
 
-        path = urlparse.urljoin(
+        path = urljoin(
             current_app.config['STORE_DOMAIN'],
             self.relative_url)
 
@@ -185,7 +185,7 @@ class Provider(object):
         for i, part in enumerate(parts):
             if i > 0:
                 part = part.lstrip('/')
-            path = urlparse.urljoin(path.rstrip('/') + '/', part.rstrip('/'))
+            path = urljoin(path.rstrip('/') + '/', part.rstrip('/'))
 
         return path.lstrip('/')
 
