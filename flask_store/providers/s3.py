@@ -40,18 +40,19 @@ Example
         provider.save()
 """
 
-try:
-    import boto
-    BOTO_INSTALLED = True
-except ImportError:
-    BOTO_INSTALLED = False
-
+# import gevent before anything else
 try:
     import gevent.monkey
     gevent.monkey.patch_all()
     GEVENT_INSTALLED = True
 except ImportError:
     GEVENT_INSTALLED = False
+
+try:
+    import boto
+    BOTO_INSTALLED = True
+except ImportError:
+    BOTO_INSTALLED = False
 
 # Standard Libs
 import io
