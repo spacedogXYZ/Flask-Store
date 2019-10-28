@@ -61,7 +61,6 @@ try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
-=======
 
 # Third Party Libs
 from flask import copy_current_request_context, current_app
