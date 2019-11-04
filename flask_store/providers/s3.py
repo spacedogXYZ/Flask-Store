@@ -214,7 +214,7 @@ class S3Provider(Provider):
         key = bucket.new_key(path)
         key.set_metadata('Content-Type', mimetype)
 
-        for header, value in current_app.config['STORE_S3_HEADERS'].iteritems():
+        for header, value in current_app.config['STORE_S3_HEADERS'].items():
             key.set_metadata(header, value)
         if isinstance(fp,StringIO):
             key.set_contents_from_string(fp.getvalue(), reduced_redundancy=current_app.config['STORE_S3_REDUCED_REDUNDANCY'])
