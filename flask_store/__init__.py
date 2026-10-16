@@ -17,6 +17,13 @@ try:
 except ImportError:
     from urlparse import urlparse, urljoin
 
+# monkey patch collections.Iterable to avoid issue python 3.11
+import collections
+import collections.abc
+collections.Iterable = collections.abc.Iterable
+collections.Mapping = collections.abc.Mapping
+
+
 from flask import current_app, send_from_directory
 from flask_store.exceptions import NotConfiguredError
 from importlib import import_module
